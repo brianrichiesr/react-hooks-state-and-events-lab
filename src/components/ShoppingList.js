@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Item from "./Item";
 
 function ShoppingList({ items }) {
-  const [cartObj, setCartObj] = useState({});
   const [itemsOnList, setItemsOnList] = useState([...items]);
 
   const filterItems = (e) => {
@@ -16,15 +15,6 @@ function ShoppingList({ items }) {
     });
     setItemsOnList(filteredArray);
   }
-  const toggleFromCart = (itemName) => {
-    let cart = {...cartObj};
-    if (cart[itemName]) {
-      cart[itemName] = false;
-    } else {
-      cart[itemName] = true;
-    }
-    setCartObj(cart);
-  }
   return (
     <div className="ShoppingList">
       <div className="Filter">
@@ -37,7 +27,7 @@ function ShoppingList({ items }) {
       </div>
       <ul className="Items">
         {itemsOnList.map((item) => (
-          <Item key={item.id} name={item.name} category={item.category} toggleFromCart={toggleFromCart} cartObj={cartObj} />
+          <Item key={item.id} name={item.name} category={item.category} />
         ))}
       </ul>
     </div>
